@@ -31,15 +31,17 @@ pip install -r requirements.txt
 1. 准备数据集
 运行数据下载脚本。该脚本已配置国内镜像（hf-mirror），以保证网络不佳情况下的下载速度。
 
-Bash
+```Bash
 python data_download.py
+```
 提示：请确保你的 train.jsonl 和 test.jsonl 文件已放置在 train.py 期望的读取路径下。
 
 2. 启动模型微调
 训练脚本会自动通过 ModelScope 下载 Qwen2-1.5B-Instruct 基础模型，应用 LoRA 配置，开始训练并将日志推送到 SwanLab。
 
-Bash
+```Bash
 python train.py
+```
 训练完成后，微调后的模型权重及 Tokenizer 将被保存在 ./output/Qwen2 目录下。
 
 SwanLab 实验面板
