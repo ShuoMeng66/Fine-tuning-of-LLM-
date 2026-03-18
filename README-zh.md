@@ -18,17 +18,16 @@ Fine-tuning-of-LLM-/
 ├── output/              # 存放微调后的模型权重 (不在 Git 版本控制中)
 └── qwen/                # 下载的基础模型权重存放目录 (不在 Git 版本控制中)
 ```
-环境安装
+###环境安装
 请确保已安装 Python，建议在虚拟环境中运行：
 
-Bash
+```Bash
 # 克隆仓库
 git clone [https://github.com/ShuoMeng66/Fine-tuning-of-LLM-.git](https://github.com/ShuoMeng66/Fine-tuning-of-LLM-.git)
 cd Fine-tuning-of-LLM-
-
-# 安装依赖项
 pip install -r requirements.txt
-快速使用
+```
+###快速使用
 1. 准备数据集
 运行数据下载脚本。该脚本已配置国内镜像（hf-mirror），以保证网络不佳情况下的下载速度。
 
