@@ -19,7 +19,7 @@ Fine-tuning-of-LLM-/
 ├── output/              # Directory for saved model weights (Ignored in git)
 └── qwen/                # Downloaded base model weights (Ignored in git)
 ```
-### Installation
+## Installation
 Ensure you have Python installed. It is recommended to use a virtual environment.
 
 ```Bash
@@ -30,7 +30,7 @@ cd Fine-tuning-of-LLM-
 # Install dependencies
 pip install -r requirements.txt
 ```
-### Usage
+## Usage
 1. Prepare Datasets
 Run the download script to fetch the datasets. The script configures a domestic mirror for faster downloading in restricted network environments.
 
