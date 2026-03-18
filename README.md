@@ -1,3 +1,4 @@
+[**简体中文**](README-zh.md) | **English**
 # LLM Fine-Tuning with Qwen2
 
 This repository provides a streamlined pipeline for downloading datasets and fine-tuning Large Language Models (LLMs), specifically using the Qwen2-1.5B-Instruct model. The project leverages LoRA (Low-Rank Adaptation) for parameter-efficient fine-tuning and integrates SwanLab for experiment tracking and visualization.
