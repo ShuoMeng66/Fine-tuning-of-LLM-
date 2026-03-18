@@ -49,3 +49,5 @@ Once completed, the fine-tuned model weights and the tokenizer will be saved in 
 
 Tracking with SwanLab
 During or after training, you can view your training metrics and prediction results on the SwanLab dashboard. The script automatically creates a project named Qwen2-fintune.
+
+---
