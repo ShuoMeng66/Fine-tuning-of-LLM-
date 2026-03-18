@@ -9,7 +9,7 @@
 * **可视化实验跟踪**：深度集成 SwanLab，实时记录训练 Loss、学习率变化，并可视化模型推理结果。
 
 ## 目录结构
-
+```text
 Fine-tuning-of-LLM-/
 ├── data_download.py     # 用于下载大型医疗数据集的脚本
 ├── train.py             # 数据预处理、LoRA 微调与推理主脚本
@@ -17,6 +17,7 @@ Fine-tuning-of-LLM-/
 ├── datasets/            # 存放下载的数据集 (不在 Git 版本控制中)
 ├── output/              # 存放微调后的模型权重 (不在 Git 版本控制中)
 └── qwen/                # 下载的基础模型权重存放目录 (不在 Git 版本控制中)
+```
 环境安装
 请确保已安装 Python，建议在虚拟环境中运行：
 
