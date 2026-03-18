@@ -1,0 +1,15 @@
+accelerate>=0.27.0        
+safetensors>=0.4.2        
+transformers>=4.38.0      
+peft>=0.10.0             
+datasets>=2.16.0          
+modelscope>=1.13.0        
+oss2>=2.18.4              
+addict>=2.4.0             
+pandas>=2.0.0             
+swanlab>=0.2.4            
+scipy>=1.10.0             
+tqdm>=4.66.0              
+#在cmd中执行以下命令安装依赖：
+#cd 项目根目录
+#pip install -r requirements.txt
