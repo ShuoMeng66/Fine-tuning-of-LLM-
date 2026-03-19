@@ -1,0 +1,48 @@
+import os
+import random
+import json
+
+input_dir = "./datasets"
+input_files = ["huatuo_lite.jsonl", "disc_med_sft.jsonl", "cmedqa_v2.jsonl"]
+train_output = "train.jsonl"
+test_output = "test.jsonl"
+
+test_ratio = 0.05 
+
+print("开始读取并合并数据...")
+all_lines = []
+
+for filename in input_files:
+    filepath = os.path.join(input_dir, filename)
+    if os.path.exists(filepath):
+        print(f"正在读取: {filepath}")
+        with open(filepath, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+            all_lines.extend(lines)
+            print(f" - 获取到 {len(lines)} 条数据")
+    else:
+        print(f"未找到文件 {filepath}，已跳过。")
+
+total_data_count = len(all_lines)
+if total_data_count == 0:
+    print("错误: 没有读取到任何数据，请检查 datasets 文件夹。")
+    exit()
+
+print(f"\n总计读取到 {total_data_count} 条数据。正在打乱数据顺序...")
+
+random.seed(42) 
+random.shuffle(all_lines)
+
+split_index = int(total_data_count * (1 - test_ratio))
+train_data = all_lines[:split_index]
+test_data = all_lines[split_index:]
+
+print("\n正在写入训练集和测试集...")
+
+with open(train_output, "w", encoding="utf-8") as f:
+    f.writelines(train_data)
+print(f"训练集保存成功: {train_output} (共 {len(train_data)} 条)")
+
+with open(test_output, "w", encoding="utf-8") as f:
+    f.writelines(test_data)
+print(f"测试集保存成功: {test_output} (共 {len(test_data)} 条)")
