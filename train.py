@@ -14,24 +14,26 @@ from transformers import (
 import os
 import swanlab
 
-
 def dataset_jsonl_transfer(origin_path, new_path):
     
     messages = []
-    with open(origin_path, "r") as file:
+    with open(origin_path, "r", encoding="utf-8") as file:
         for line in file:
-            data = json.loads(line)
-            context = data["text"]
-            catagory = data["category"]
-            label = data["output"]
+            try:
+                data = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            
+            query = data.get("query", data.get("instruction", data.get("question", data.get("text", ""))))
+            response = data.get("response", data.get("output", data.get("answer", "")))
+
+            if not query or not response:
+                continue
+
             message = {
-                "instruction": """
-                            你是一个文本分类领域的专家，
-                            你会接收到一段文本和几个潜在的分类选项，
-                            请输出文本内容的正确类型
-                            """,
-                "input": f"文本:{context},类型选型:{catagory}",
-                "output": label,
+                "instruction": "你现在是一个经验丰富、专业且富有同理心的AI医疗助手。请根据患者的描述，给出科学、准确的医疗科普和建议。请注意，你的建议不能替代专业医生的面诊。",
+                "input": query,
+                "output": response,
             }
             messages.append(message)
 
@@ -42,10 +44,10 @@ def dataset_jsonl_transfer(origin_path, new_path):
 
 def process_func(example):
     
-    MAX_LENGTH = 384
+    MAX_LENGTH = 1024 
     input_ids, attention_mask, labels = [], [], []
     instruction = tokenizer(
-        f"<|im_start|>system\n你是一个文本分类领域的专家，你会接收到一段文本和几个潜在的分类选项，请输出文本内容的正确类型<|im_end|>\n<|im_start|>user\n{example['input']}<|im_end|>\n<|im_start|>assistant\n",
+        f"<|im_start|>system\n{example['instruction']}<|im_end|>\n<|im_start|>user\n{example['input']}<|im_end|>\n<|im_start|>assistant\n",
         add_special_tokens=False,
     )
     response = tokenizer(f"{example['output']}", add_special_tokens=False)
