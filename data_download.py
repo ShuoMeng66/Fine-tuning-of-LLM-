@@ -1,10 +1,10 @@
 import os
 import json
-from datasets import load_dataset
-from modelscope.msdatasets import MsDataset
 
 # 设置国内 HuggingFace 镜像（可选，但推荐，尤其是下载大型数据集时）
 os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+from datasets import load_dataset
+from modelscope.msdatasets import MsDataset
 
 # 创建一个专门存放数据的文件夹
 save_dir = "./datasets"
